@@ -19,6 +19,14 @@ CMAQ_map <- function(ACON, path1, GRID, path2, poll, TS, LAY, outpath){
 
   library(ncdf4)
   # prepare the paths and files for nc input
+  # TS <- 1
+  # LAY <- 1
+  # poll <- "SO2"
+  # path1 <- "C:/Users/jhuang/Documents"
+  # path2 <- "C:/Users/jhuang/Documents"
+  # outpath <- "C:/Users/jhuang/Documents"
+  # ACON <- "emis_mole_all_20060801_12US1_cmaq_cb05_tx_C25_2006am.ncf"
+  # GRID <- "GRIDCRO2D_Benchmark"
   file1 <- sprintf("%s/%s",path1, ACON)
   file2 <- sprintf("%s/%s",path2, GRID)
 
