@@ -34,4 +34,4 @@ This is a funciton to vituralize coundary condition data.
 IC_BC_VIR(path, BC, IC, poll, lay, outpath)
 example:
 
-![SO2 boundary_condition](plots/SO2_Lay_1_2006213 0.png)
+![SO2 boundary_condition](plots/BCON_D502a_CMAQ-BENCHMARK_profile.png)
