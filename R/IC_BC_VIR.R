@@ -19,7 +19,7 @@ IC_BC_VIR <- function(path, BC, IC, poll, lay, outpath){
   # path <- "C:/Users/jhuang/Documents"
   # BC <- "BCON_D502a_CMAQ-BENCHMARK_profile"
   file1 <- sprintf("%s/%s",path, BC)
-  IC <- "ICON_D502a_CMAQ-BENCHMARK_profile"
+  # IC <- "ICON_D502a_CMAQ-BENCHMARK_profile"
   file2 <- sprintf("%s/%s",path, IC)
   # poll <- "SO2"
   # lay <- 1
@@ -68,8 +68,9 @@ IC_BC_VIR <- function(path, BC, IC, poll, lay, outpath){
 
   p <- ggplot(data = data_tmp, aes(x = COL, y = ROW, fill = VALUE)) +
     geom_tile() +
-    scale_fill_continuous(high = "#132B43", low = "#56B1F7") +
-    labs(fill=ncBC$var$SO2$units)
+    scale_fill_continuous(low = "white", high = "blue") +
+    labs(fill=ncBC$var$SO2$units) +
+    ggtitle(sprintf("%s boundary condition, layer: %s",poll,lay))
 
   outfile <- sprintf("%s/%s.png",path,BC)
   png(outfile,units="in", width=5, height=4, res=300)
