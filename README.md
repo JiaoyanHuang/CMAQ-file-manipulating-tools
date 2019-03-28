@@ -29,7 +29,7 @@ example:
 20190220 update 2D tile map is ready, but some cells are mislocated, most of them are OK.
 ![SO2 tile map](plots/SO2_Lay_1_2006213%200.png)
 
-## 5. IC-BC-VIR <br />
+## 6. IC-BC-VIR <br />
 This is a funciton to vituralize coundary condition data.
 IC_BC_VIR(path, BC, IC, poll, lay, outpath)
 example:
