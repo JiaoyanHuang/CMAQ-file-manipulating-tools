@@ -27,11 +27,13 @@ This is a funciton to vituralize CMAQ data.
 CMAQ_map(ACON, path1, GRID, path2, poll, TS, LAY, outpath)
 example:
 20190220 update 2D tile map is ready, but some cells are mislocated, most of them are OK.
+CMAQ_map(ACON, path1, GRID, path2, "so2, TS, LAY, outpath)
 ![SO2 tile map](plots/SO2_Lay_1_2006213%200.png)
 
 ## 6. IC-BC-VIR <br />
 This is a funciton to vituralize coundary condition data.
-IC_BC_VIR(path, BC, IC, poll, lay, outpath)
+IC_BC_VIR(path, BC, IC, BDY, poll, lay, outpath, country,xlimit)
 example:
+IC_BC_VIR(path, BC,IC,BDY,"O3",2, path, c("usa","Canada","Mexico"),c(-200,-50))
 
 ![SO2 boundary_condition](plots/BCON_D502a_CMAQ-BENCHMARK_profile.png)
