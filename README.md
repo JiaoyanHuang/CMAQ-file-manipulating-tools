@@ -37,3 +37,10 @@ example:
 IC_BC_VIR(path, BC,IC,BDY,"O3",2, path, c("usa","Canada","Mexico"),c(-200,-50))
 
 ![SO2 boundary_condition](plots/BCON_D502a_CMAQ-BENCHMARK_profile.png)
+
+## 7. mask_point and mask_area <br />
+These functions are used to mask out the given points (long and lat) or mask out the areas with given boundary for example
+
+![MASK point](plots/SO2_mask_Lay_1_2006213 0.png)
+
+![MASK area](plots/SO2_maskarea_Lay_1_2006213 0.png)
