@@ -50,13 +50,13 @@
   t <- ncdim_def(ndimen[1],"",ncin$dim[[1]]$vals,unlim = T)
   d <- ncdim_def(ndimen[2],"",ncin$dim[[2]]$vals)
   z <- ncdim_def(ndimen[3],"",ncin$dim[[3]]$vals)
-  v <- ncdim_def(ndimen[4],"",ncin$dim[[4]]$vals)
+  v <- ncdim_def(ndimen[4],"",ncin$dim[[4]]$vals[1])
   y <- ncdim_def(ndimen[5],"",ncin$dim[[5]]$vals) #[sROW:eROW])
   x <- ncdim_def(ndimen[6],"",ncin$dim[[6]]$vals) #[sCOL:eCOL])
 
   # add var to make dimension in correct order
   varp1 <- ncvar_def("VAR1","",t)
-  ncnew <- nc_create("test1.nc", varp1 )
+  ncnew <- nc_create("test1_1var.nc", varp1 )
   varp2 <- ncvar_def("VAR2","",list(d,z,v,y,x))
   ncnew <- ncvar_add(ncnew,varp2)
   # varp3 <- ncvar_def(ndimen[3],"",z)
@@ -72,12 +72,12 @@
   var_dim1 <- list(d,v,t)
   var1 <- ncvar_def(npoll[1],ncin$var[[1]]$units,var_dim1,longname = ncin$var[[1]]$longname,prec = "integer")
   ncnew <- ncvar_add(ncnew,var1)
-  dt <- ncvar_get(ncin,"TFLAG")
+  dt <- ncvar_get(ncin,"TFLAG")[,1,]
   # dtt <- array(c(as.vector(dt),as.vector(dt[,1:8,])),c(2,ncin$nvars+8,ncin$dim$TSTEP$len))
   ncvar_put(ncnew, var1,dt)
   ncatt_put(ncnew,npoll[1], "var_desc", "Timestep-valid flags:  (1) YYYYDDD or (2) HHMMSS                                ")
 
-  for (i in 2:length(npoll)){
+  for (i in 2:2){ #length(npoll)){
     var_dim <- list(x,y,z,t)
     var <- ncvar_def(npoll[i],ncin$var[[i]]$units,var_dim, longname = ncin$var[[i]]$longname)
     ncnew <- ncvar_add(ncnew,var)
@@ -88,12 +88,19 @@
   }
 
   nc_close(ncnew)
-  nctest <- nc_open("test1.nc", write = T)
+  nctest <- nc_open("test1_1var.nc", write = T)
 
   nc_att <- ncatt_get(ncin,0)
   g_att_name <- names(nc_att)
   for (i in 1:length(nc_att)){
-    ncatt_put(ncnew,0,g_att_name[i],nc_att[[i]])
+    if(g_att_name[i] == "VAR-LIST"){
+      ncatt_put(ncnew,0,g_att_name[i],"ACROLEIN        ")
+    }else if(g_att_name[i] == "NVARS"){
+      ncatt_put(ncnew,0,g_att_name[i],1)
+    }else{
+      ncatt_put(ncnew,0,g_att_name[i],nc_att[[i]])
+    }
+
   }
 
   nc_close(ncnew)

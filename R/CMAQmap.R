@@ -51,8 +51,14 @@ CMAQ_map <- function(ACON, path1, GRID, path2, poll, TS, LAY, outpath){
   nLay <- dimlist[3,2]
   nStep <- dimlist[4,2]
   date <- ncatt_get(ncin,0,"SDATE")$value
-  TSTEP <- ncvar_get(ncin,"TFLAG")[2,1,]
-  tstamp <- as.character(paste(date,TSTEP[TS],sep = " "))
+  if(ncin$dim$LAY$len > 1){
+    TSTEP <- ncvar_get(ncin,"TFLAG")[2,1,]
+    tstamp <- as.character(paste(date,TSTEP[TS],sep = " "))
+  }else{
+    TSTEP <- ncvar_get(ncin,"TFLAG")[2,1]
+    tstamp <- as.character(paste(date,TSTEP[TS],sep = " "))
+  }
+
 
   data_tmp <- ncvar_get(ncin,poll)
 
