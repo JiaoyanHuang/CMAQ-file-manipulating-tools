@@ -1,9 +1,33 @@
-# CMAQ-input
-This package is used to modify CMAQ input such as emission, boundary and initial condition, it can also be used to vituralize netcdf files.
-<!--- comment out
-## This is test
-![](https://github.com/JiaoyanHuang/MOVESdata/blob/master/plots/2025_PM2.5_emission.png)
---->
+Title: CMAQ file manipulating tools (CMAQ FMT) Author: Jiaoyan J. Huang Date: 2019-04-11
+
+# OVERVIEW
+
+This package is used to modify CMAQ input/output files such as emission, boundary and initial condition, it can also be used to vituralize netcdf files.
+
+# PREREQUISITES
+
+* OS : Linux, Mac OS, Windows
+* R>=3.4.3 
+  * ncdf4
+  * ggplot2
+  * reshape2
+  * akima
+  * ggmap
+  * urbnmapr
+  * tidyverse
+  * oce
+  * stringr
+  * abind
+  
+# INSTALLATION
+
+install.packages("devtools")
+
+library(devtools)
+
+install_github("JiaoyanHuang/CMAQ-file-manipulating-tools")
+
+
 ## 1. var_stat <br />
 This is a function to do general statistics on all variable in a ioapi netcdf file.
 data_stat(file, path, reportfile) which generates max, min, mean, standard deviation for each variable
